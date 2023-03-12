@@ -12,6 +12,7 @@ Esse repositório contem o backend de um teste técnico para a vaga de FullStack
 - React Toastify
 - Zod
 - React Hook Form
+- Material UI
 
 ## Como instalar e executar o projeto
 
@@ -59,5 +60,10 @@ Após o cadastro, o login é feito automaticamente.
 Os formulários são validados por um schema do Zod usando o zodResolver do react-hook-form.
 Na tela de cadastro, há validação no comprimento do nome do usuário, formato do e-mail e força da senha.
 Na tela de login, apenas é validado se os campos foram preenchidos.
+
+### 6. Persistência de estado
+
+Com o redux-persist, foi implementada a persistência de estado para que, ao recarregar a página ou alterar a url diretamente na barra de endereço, o usuário logado seja preservado.
+
 
 > This is a challenge by [Coodesh](https://coodesh.com/)
