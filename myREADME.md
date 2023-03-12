@@ -48,4 +48,10 @@ Logo após, instalei o redux, configurei, e implementei o armazenamento do token
 Com a funcionalidade de login pronta e o Redux configurado, iniciei a estilização pelo AuthLayout, seguindo o proposto no protótipo do figma, utilizando styled-components para definir os estilos.
 Em seguida, o restante da página de login foi estilizado.
 
+### 4. Página de cadastro de usuario
+
+Com o Redux e Axios funcionando, a tela de cadastro de usuário foi iniciada com a implementação do layout e, em seguida, a funcionalidade.
+Foi utilizada a biblioteca react-toastify para informar erros ao usuário, e o uso da mesma biblioteca foi implementado na tela de login.
+Após o cadastro, o login é feito automaticamente.
+
 > This is a challenge by [Coodesh](https://coodesh.com/)
