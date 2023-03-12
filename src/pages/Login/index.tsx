@@ -1,8 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, FieldErrors } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 import z from "zod";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
@@ -24,7 +25,7 @@ export function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -60,7 +61,7 @@ export function LoginPage() {
   }
 
   function handleSubmitError() {
-    toastFormErrors(errors)
+    toastFormErrors(errors);
   }
 
   function handleNavigateToSignUpPage() {
@@ -79,7 +80,9 @@ export function LoginPage() {
         <label>Senha</label>
         <input {...register("password")} type="password" />
       </InputContainer>
-      <LoginButton>LOGAR</LoginButton>
+      <LoginButton disabled={isSubmitting}>
+        {!isSubmitting ? "LOGAR" : <ClipLoader size="1.25rem" color="white" />}
+      </LoginButton>
       <SignUpButton onClick={handleNavigateToSignUpPage}>
         CRIAR CONTA
       </SignUpButton>

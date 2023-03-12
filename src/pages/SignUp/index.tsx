@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import z from "zod";
 import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
 import HubLocalLogo from "../../assets/HubLocalLogo.png";
@@ -35,7 +36,7 @@ export function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -118,7 +119,13 @@ export function SignUpPage() {
         <label>Repetir senha</label>
         <input {...register("passwordConfirmation")} type="password" />
       </InputContainer>
-      <SignUpButton>REGISTRAR</SignUpButton>
+      <SignUpButton disabled={isSubmitting}>
+        {!isSubmitting ? (
+          "REGISTRAR"
+        ) : (
+          <ClipLoader size="1.25rem" color="white" />
+        )}
+      </SignUpButton>
       <NavigateToLoginButton onClick={handleNavigateToLoginPage}>
         LOGAR
       </NavigateToLoginButton>

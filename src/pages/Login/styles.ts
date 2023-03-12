@@ -52,6 +52,10 @@ export const LoginButton = styled(Button).attrs({
 })`
   background-color: ${(props) => props.theme.blue};
   margin-top: 0.75rem;
+
+  :disabled {
+    opacity: 0.7;
+  }
 `;
 
 export const SignUpButton = styled(Button)`
