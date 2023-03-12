@@ -43,5 +43,9 @@ Criei as quatro rotas e dois layouts: um para as páginas de listagem (acessadas
 Após as rotas estarem definidas, criei um formulário na tela de login (sem estilização) para integrar com o react-hook-form e implementar a chamada de login com axios.
 Logo após, instalei o redux, configurei, e implementei o armazenamento do token e usuário logado no estado global, bem como o redirecionamento baseado na autenticação nos layouts (caso não esteja logado, redirecionar para a página de login; caso esteja, redirecionar para a listagem de empresas).
 
+### 3. Estilização
+
+Com a funcionalidade de login pronta e o Redux configurado, iniciei a estilização pelo AuthLayout, seguindo o proposto no protótipo do figma, utilizando styled-components para definir os estilos.
+Em seguida, o restante da página de login foi estilizado.
 
 > This is a challenge by [Coodesh](https://coodesh.com/)

@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import z from "zod";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
+import HubLocalLogo from "../../assets/HubLocalLogo.png";
+
+import { InputContainer, LoginButton, LoginForm, SignUpButton } from "./styles";
 
 const loginFormSchema = z.object({
   email: z.string(),
@@ -36,13 +39,19 @@ export function LoginPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)}>
-      <label>Email</label>
-      <input {...register("email")} />
-      <label>Senha</label>
-      <input {...register("password")} type="password" />
-      <button type="submit">LOGAR</button>
-      <button>CRIAR CONTA</button>
-    </form>
+    <LoginForm onSubmit={handleSubmit(handleLogin)}>
+      <img src={HubLocalLogo} />
+
+      <InputContainer>
+        <label>Email</label>
+        <input {...register("email")} />
+      </InputContainer>
+      <InputContainer>
+        <label>Senha</label>
+        <input {...register("password")} type="password" />
+      </InputContainer>
+      <LoginButton>LOGAR</LoginButton>
+      <SignUpButton>CRIAR CONTA</SignUpButton>
+    </LoginForm>
   );
 }

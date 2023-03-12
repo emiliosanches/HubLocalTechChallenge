@@ -4,4 +4,4 @@ export const defaultTheme = {
   red: "#c90808",
 
   backgroundWhite: '#f5f5f5'
-};
+} as const;
