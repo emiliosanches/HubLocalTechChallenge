@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
 import HubLocalLogo from "../../assets/HubLocalLogo.png";
+import { toastFormErrors } from "../../utils/form/toastFormErrors";
 
 import {
   InputContainer,
@@ -15,20 +16,34 @@ import {
   NavigateToLoginButton,
 } from "./styles";
 
-const signUpFormSchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  password: z.string(),
-  passwordConfirmation: z.string(),
-});
+const signUpFormSchema = z
+  .object({
+    name: z.string().min(5, "O nome deve ter no mínimo 5 caracteres"),
+    email: z.string().min(8, "O e-mail deve ter no mínimo 8 caracteres"),
+    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres"),
+    passwordConfirmation: z.string(),
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: "As senhas não coincidem",
+  });
 
 type SignUpFormData = z.infer<typeof signUpFormSchema>;
 
 export function SignUpPage() {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit } = useForm<SignUpFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+    },
   });
 
   const navigate = useNavigate();
@@ -75,12 +90,16 @@ export function SignUpPage() {
     }
   }
 
+  function handleSubmitError() {
+    toastFormErrors(errors);
+  }
+
   function handleNavigateToLoginPage() {
     navigate("/auth/login");
   }
 
   return (
-    <SignUpForm onSubmit={handleSubmit(handleSignUp)}>
+    <SignUpForm onSubmit={handleSubmit(handleSignUp, handleSubmitError)}>
       <img src={HubLocalLogo} />
 
       <InputContainer>

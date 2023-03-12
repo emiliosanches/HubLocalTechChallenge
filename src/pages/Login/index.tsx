@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, FieldErrors } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,12 +7,13 @@ import z from "zod";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
 import HubLocalLogo from "../../assets/HubLocalLogo.png";
+import { toastFormErrors } from "../../utils/form/toastFormErrors";
 
 import { InputContainer, LoginButton, LoginForm, SignUpButton } from "./styles";
 
 const loginFormSchema = z.object({
-  email: z.string(),
-  password: z.string(),
+  email: z.string().min(1, "Informe o e-mail"),
+  password: z.string().min(1, "Informe a senha"),
 });
 
 type LoginFormData = z.infer<typeof loginFormSchema>;
@@ -20,8 +21,16 @@ type LoginFormData = z.infer<typeof loginFormSchema>;
 export function LoginPage() {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit } = useForm<LoginFormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const navigate = useNavigate();
@@ -50,12 +59,16 @@ export function LoginPage() {
     }
   }
 
+  function handleSubmitError() {
+    toastFormErrors(errors)
+  }
+
   function handleNavigateToSignUpPage() {
     navigate("/auth/sign-up");
   }
 
   return (
-    <LoginForm onSubmit={handleSubmit(handleLogin)}>
+    <LoginForm onSubmit={handleSubmit(handleLogin, handleSubmitError)}>
       <img src={HubLocalLogo} />
 
       <InputContainer>
