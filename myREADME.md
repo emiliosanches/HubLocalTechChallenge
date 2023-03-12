@@ -31,6 +31,11 @@ Passo a passo:
 
 ## Documentação do processo de desenvolvimento
 
-Abaixo, explicações sobre algumas decisões tomadas durante o desenvolvimento da aplicação
+Abaixo, a documentação do desenvolvimento da aplicação.
+
+### 1. Definição das rotas
+
+O primeiro passo, após inicializar o projeto, foi definir as rotas. A partir do layout no figma, identifiquei 4 páginas: cadastro, login, listagem de empresas e listagem de locais.
+Criei as quatro rotas e dois layouts: um para as páginas de listagem (acessadas após o login) - chamado DefaultLayout - e um para as páginas de login e cadastro - chamado AuthLayout.
 
 > This is a challenge by [Coodesh](https://coodesh.com/)
