@@ -19,7 +19,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       store.dispatch(logout());
-      return error.response;
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);

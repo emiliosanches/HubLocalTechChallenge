@@ -28,8 +28,6 @@ export function LoginPage() {
       password: data.password,
     });
 
-    console.log(res);
-
     dispatch(
       login({
         token: res.data.access_token,
