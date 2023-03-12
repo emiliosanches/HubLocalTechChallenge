@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AuthLayout } from "./Layouts/AuthLayout";
 import { DefaultLayout } from "./Layouts/DefaultLayout";
 import { CompaniesListPage } from "./pages/CompaniesList";
@@ -18,6 +18,7 @@ export function Router() {
           <Route element={<CompaniesListPage />} path="" />
           <Route element={<PlacesListPage />} path=":companyId/places" />
         </Route>
+        <Route path="*" element={<Navigate to="/auth/login" />} />
       </Routes>
     </BrowserRouter>
   );
