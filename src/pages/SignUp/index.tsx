@@ -20,7 +20,7 @@ import {
 const signUpFormSchema = z
   .object({
     name: z.string().min(5, "O nome deve ter no mínimo 5 caracteres"),
-    email: z.string().min(8, "O e-mail deve ter no mínimo 8 caracteres"),
+    email: z.string().email("Informe um e-mail válido"),
     password: z
       .string()
       .min(8, "A senha deve ter no mínimo 8 caracteres")
