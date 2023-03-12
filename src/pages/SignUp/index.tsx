@@ -21,7 +21,16 @@ const signUpFormSchema = z
   .object({
     name: z.string().min(5, "O nome deve ter no mínimo 5 caracteres"),
     email: z.string().min(8, "O e-mail deve ter no mínimo 8 caracteres"),
-    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres"),
+    password: z
+      .string()
+      .min(8, "A senha deve ter no mínimo 8 caracteres")
+      .regex(/[a-z]/, "A senha deve conter uma letra minúscula")
+      .regex(/[A-Z]/, "A senha deve conter uma letra maiúscula")
+      .regex(/[0-9]/, "A senha deve conter um número")
+      .regex(
+        /[-#!$@£%^&*()_+|~=`{}\[\]:";'<>?,.\/ ]/,
+        "A senha deve conter um símbolo"
+      ),
     passwordConfirmation: z.string(),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
