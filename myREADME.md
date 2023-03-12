@@ -54,4 +54,10 @@ Com o Redux e Axios funcionando, a tela de cadastro de usuário foi iniciada com
 Foi utilizada a biblioteca react-toastify para informar erros ao usuário, e o uso da mesma biblioteca foi implementado na tela de login.
 Após o cadastro, o login é feito automaticamente.
 
+### 5. Validação de formulário
+
+Os formulários são validados por um schema do Zod usando o zodResolver do react-hook-form.
+Na tela de cadastro, há validação no comprimento do nome do usuário, formato do e-mail e força da senha.
+Na tela de login, apenas é validado se os campos foram preenchidos.
+
 > This is a challenge by [Coodesh](https://coodesh.com/)
