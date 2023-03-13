@@ -65,5 +65,10 @@ Na tela de login, apenas é validado se os campos foram preenchidos.
 
 Com o redux-persist, foi implementada a persistência de estado para que, ao recarregar a página ou alterar a url diretamente na barra de endereço, o usuário logado seja preservado.
 
+### 7. Remoção do DefaultLayout e implementação do Header
+
+Enquanto implementava o Header, percebi que havia um problema em utilizá-lo em um layout - como estava sendo feito anteriormente: ele precisa ter acesso aos dados internos da página (nome da empresa, na tela de listagem de locais).
+Para conseguir fazer isso, eu deveria salvar esse dado no meu estado global com Redux ou com um Contexto. No entanto, essa solução seria algo muito maior do que o problema que temos, portanto, optei por remover o DefaultLayout e chamar o componente Header diretamente nas páginas de listagem de empresas e locais.
+Assim, o nome da empresa pôde ser passado ao Header por meio de props.
 
 > This is a challenge by [Coodesh](https://coodesh.com/)
