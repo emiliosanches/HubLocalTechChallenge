@@ -76,4 +76,10 @@ Assim, o nome da empresa pôde ser passado ao Header por meio de props.
 Como o DefaultLayout foi removido, as rotas de listagem de empresas e locais ficaram desprotegidas (já que era o DefaultLayout quem possuia a lógica para redirecionar à tela de login caso o usuário não estivesse autenticado).
 Portanto, criei o componente PageGuard, que não possui nenhum layout, retornando apenas o Outlet (restante da página), com essa verificação.
 
+### 9. Página de listagem de empresas
+
+A página de listagem de empresas foi implementada utilizando os componentes de tabela e paginação do MaterialUI, assim como os modais de criação, atualização e exclusão de empresas foram criados utilizando os componentes de Modal do MUI.
+O footer da tabela (paginação) ficou diferente do proposto no protótipo do figma pois foi utilizado o componente do MUI.
+O modal de criação de empresa e o modal de atualização de empresa são o mesmo componente, porém, quando recebe uma propriedade com os dados de uma empresa, usa esses dados como valor padrão e, ao salvar, utiliza o endpoint de atualização.
+
 > This is a challenge by [Coodesh](https://coodesh.com/)
