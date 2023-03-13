@@ -1,6 +1,6 @@
 import { ArrowBackRounded, Delete, Edit, Place } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { Header } from "../../components/Header";
@@ -41,6 +41,7 @@ export function PlacesListPage() {
   }>();
 
   const params = useParams();
+  const navigate = useNavigate();
 
   const companyId = Number(params.companyId);
 
@@ -54,8 +55,13 @@ export function PlacesListPage() {
       setPage(res.data.page);
       setPerPage(res.data.perPage);
       setTotal(res.data.total);
-    } catch (error) {
-      toast.error("Ocorreu um erro ao listar os locais");
+    } catch (error: any) {
+      if (error.response?.status === 403) {
+        toast.error("Essa empresa não pertence ao seu usuário");
+        navigate("/companies");
+      } else {
+        toast.error("Ocorreu um erro ao listar os locais");
+      }
     } finally {
       setIsLoadingPlaces(false);
     }

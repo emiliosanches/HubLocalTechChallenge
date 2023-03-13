@@ -82,4 +82,9 @@ A página de listagem de empresas foi implementada utilizando os componentes de 
 O footer da tabela (paginação) ficou diferente do proposto no protótipo do figma pois foi utilizado o componente do MUI.
 O modal de criação de empresa e o modal de atualização de empresa são o mesmo componente, porém, quando recebe uma propriedade com os dados de uma empresa, usa esses dados como valor padrão e, ao salvar, utiliza o endpoint de atualização.
 
+### 10. Página de listagem de locais
+
+A página de listagem de locais foi implementada com base na listagem de empresas. Além das alterações de texto, formulário, nomes de variáveis e funções e lógica de comunicação com a API, foi implementado uma verificação para caso o usuário tente acessar a página de uma empresa que não possui acesso.
+Caso não houvesse essa verificação, apenas seria exibida uma mensagem de erro genérica. No entanto, essa implementação redireciona o usuário à listagem de empresas e informa que ele não possui acesso à empresa que tentou visualizar.
+
 > This is a challenge by [Coodesh](https://coodesh.com/)
