@@ -1,6 +1,6 @@
 # Teste Técnico - Fullstack Javascript Developer - Frontend
 
-Esse repositório contem o backend de um teste técnico para a vaga de FullStack Javascript Developer na HubLocal. Trata-se de uma interface em React com autenticação, formulários de cadastro e telas de listagem.
+Esse repositório contem o frontend de um teste técnico para a vaga de FullStack Javascript Developer na HubLocal. Trata-se de uma interface em React com autenticação, formulários de cadastro e telas de listagem.
 
 ## Tecnologias utilizadas
 
