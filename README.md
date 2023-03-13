@@ -1,114 +1,90 @@
-# Teste Novos Devs HubLocal
+# Teste Técnico - Fullstack Javascript Developer - Frontend
 
-Este é um desafio para que possamos ver as suas habilidades como Fullstack Developer.
+Esse repositório contem o backend de um teste técnico para a vaga de FullStack Javascript Developer na HubLocal. Trata-se de uma interface em React com autenticação, formulários de cadastro e telas de listagem.
 
-### Antes de começar
+## Tecnologias utilizadas
 
-- Prepare o projeto para ser disponibilizado no Github, copiando o conteúdo deste repositório para o seu (ou utilize o fork do projeto e aponte para o Github). Confirme que a visibilidade do projeto é pública (não esqueça de colocar no readme a referência a este challenge);
-- Considere como deadline 5 dias a partir do início do desafio. Caso tenha sido convidado a realizar o teste e não seja possível concluir dentro deste período, avise a pessoa que o convidou para receber instruções sobre o que fazer.
-- Documentar todo o processo de investigação para o desenvolvimento da atividade (README.md no seu repositório); os resultados destas tarefas são tão importantes do que o seu processo de pensamento e decisões à medida que as completa, por isso tente documentar e apresentar os seus hipóteses e decisões na medida do possível.
+- React
+- TypeScript
+- Redux + Redux Persist
+- Axios
+- Styled Components
+- React Toastify
+- Zod
+- React Hook Form
+- Material UI
 
-## Tecnologias (Front-End):
+## Como instalar e executar o projeto
 
-> Obs: as techs listadas abaixo fazem parte de nossos projetos diariamente.
-1. Material UI - https://mui.com/material-ui/
-2. Styled Component - https://styled-components.com/
-3. Redux - https://redux.js.org/
-4. Redux Persist - https://github.com/rt2zz/redux-persist
-5. Axios - https://axios-http.com/ptbr/docs/intro
+Passo a passo:
 
-Nada impede que você utilize outras como Chakra UI e Context API em vez de um Material UI e Redux, e assim por diante.
+1. Clone o repositório
+2. Entre no diretório do projeto utilizando um terminal (`cd path/to/repo`)
+3. Execute `yarn` ou `npm i` nas duas janelas de terminal
+4. Adicione um arquivo .env em cada um dos diretórios, com o formato abaixo, substituindo os valores de acordo com o seu ambiente de execução
 
-## Tecnologias (Back-End):
-Nest JS no Back-end com TypeORM e Postgres são as que utilizamos e desejamos como diferencial. No lugar de TypeORM uma boa pedida seria Prisma.
+```shell
+VITE_SERVER_URL='http://localhost:3000/'
+```
 
+5. Execute `yarn dev` ou `npm run dev` para executar a aplicação
+6. Acesse a URL mostrada no terminal
 
-## Diferencial:
-* Migrations
-* Deploy em algum servidor
-* React Test Library
-* BDD
-* TDD
+## Documentação do processo de desenvolvimento
 
-## Organização:
+Abaixo, a documentação do desenvolvimento da aplicação.
 
-* Separar o repositório do back do front
-* Aplicação de padrões Clean Code
-* Validação de chamadas assíncronas para evitar travamentos
-* Deixar instruções detalhadas no README de cada projeto
+### 1. Definição das rotas
 
-## Telas/Components:
+O primeiro passo, após inicializar o projeto, foi definir as rotas. A partir do layout no figma, identifiquei 4 páginas: cadastro, login, listagem de empresas e listagem de locais.
+Criei as quatro rotas e dois layouts: um para as páginas de listagem (acessadas após o login) - chamado DefaultLayout - e um para as páginas de login e cadastro - chamado AuthLayout.
 
-* Sign In (tela inicial)
-* Sign Up
-* CRUD de Empresas
-* CRUD de Locais
+### 2. Funcionalidade de Login
 
-### Validações
-1. campos dos formulários, principalmente que envolvem números;
-    - adicionar máscaras nos campos que precisem, no caso sendo um deles o CNPJ.
-2. Controle de estados e persistência
-    - Usar Redux, Context API ou qualquer outro framework;
-    - Usar Redux Persist ou outro meio para persistir dados de estado.
-3. Usar Lib de Feedback
-    -  notistack, react-toastify.
+Após as rotas estarem definidas, criei um formulário na tela de login (sem estilização) para integrar com o react-hook-form e implementar a chamada de login com axios.
+Logo após, instalei o redux, configurei, e implementei o armazenamento do token e usuário logado no estado global, bem como o redirecionamento baseado na autenticação nos layouts (caso não esteja logado, redirecionar para a página de login; caso esteja, redirecionar para a listagem de empresas).
 
+### 3. Estilização
 
-Link do Figma: https://www.figma.com/file/aEgfeSSNgaycj2533zay6j/my-companies-teste-hublocal?node-id=0%3A1&t=tBHtjibCLR5guvHh-0
+Com a funcionalidade de login pronta e o Redux configurado, iniciei a estilização pelo AuthLayout, seguindo o proposto no protótipo do figma, utilizando styled-components para definir os estilos.
+Em seguida, o restante da página de login foi estilizado.
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FaEgfeSSNgaycj2533zay6j%2Fmy-companies-teste-hublocal%3Fnode-id%3D0%253A1%26t%3DIca8qwTvTG6b2Goi-1" allowfullscreen></iframe>
+### 4. Página de cadastro de usuario
 
-### Funcionalidades:
+Com o Redux e Axios funcionando, a tela de cadastro de usuário foi iniciada com a implementação do layout e, em seguida, a funcionalidade.
+Foi utilizada a biblioteca react-toastify para informar erros ao usuário, e o uso da mesma biblioteca foi implementado na tela de login.
+Após o cadastro, o login é feito automaticamente.
 
-1. Logar/Criar usuários
-2. Criar/Listar/Deletar/Editar empresas (usuário logado)
-3. Criar/Listar/Deletar/Editar locais pertencentes a uma empresa (usuário logado)
+### 5. Validação de formulário
 
-### Entidades:
+Os formulários são validados por um schema do Zod usando o zodResolver do react-hook-form.
+Na tela de cadastro, há validação no comprimento do nome do usuário, formato do e-mail e força da senha.
+Na tela de login, apenas é validado se os campos foram preenchidos.
 
-Usuários
-- Colunas: Nome, Email e Senha.
-- Relacionamentos: One To Many com Empresas
+### 6. Persistência de estado
 
-Empresas
-- Colunas: Nome, Website e CNPJ.
-- Relacionamentos: Many To One com Usuários e One To Many com Locais.
+Com o redux-persist, foi implementada a persistência de estado para que, ao recarregar a página ou alterar a url diretamente na barra de endereço, o usuário logado seja preservado.
 
-Locais
-- Colunas: Nome, CEP, Rua, Número, Bairro, Cidade e Estado.
-- Relacionamentos: Many To One com Empresas.
+### 7. Remoção do DefaultLayout e implementação do Header
 
-Auth
-- Validar todas as rotas dos controllers com JWT;
-- Ao usuário logar, o token deve ser retornado para ser guardado para as próximas requests no front-end.
+Enquanto implementava o Header, percebi que havia um problema em utilizá-lo em um layout - como estava sendo feito anteriormente: ele precisa ter acesso aos dados internos da página (nome da empresa, na tela de listagem de locais).
+Para conseguir fazer isso, eu deveria salvar esse dado no meu estado global com Redux ou com um Contexto. No entanto, essa solução seria algo muito maior do que o problema que temos, portanto, optei por remover o DefaultLayout e chamar o componente Header diretamente nas páginas de listagem de empresas e locais.
+Assim, o nome da empresa pôde ser passado ao Header por meio de props.
 
-## Readme do Repositório
+### 8. Componente PageGuard
 
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
+Como o DefaultLayout foi removido, as rotas de listagem de empresas e locais ficaram desprotegidas (já que era o DefaultLayout quem possuia a lógica para redirecionar à tela de login caso o usuário não estivesse autenticado).
+Portanto, criei o componente PageGuard, que não possui nenhum layout, retornando apenas o Outlet (restante da página), com essa verificação.
 
->  This is a challenge by [Coodesh](https://coodesh.com/)
+### 9. Página de listagem de empresas
 
-## Finalização e Instruções para a Apresentação
+A página de listagem de empresas foi implementada utilizando os componentes de tabela e paginação do MaterialUI, assim como os modais de criação, atualização e exclusão de empresas foram criados utilizando os componentes de Modal do MUI.
+O footer da tabela (paginação) ficou diferente do proposto no protótipo do figma pois foi utilizado o componente do MUI.
+O modal de criação de empresa e o modal de atualização de empresa são o mesmo componente, porém, quando recebe uma propriedade com os dados de uma empresa, usa esses dados como valor padrão e, ao salvar, utiliza o endpoint de atualização.
 
-Avisar sobre a finalização e enviar para correção.
+### 10. Página de listagem de locais
 
-1. Confira se você respondeu o Scorecard da Vaga que chegou no seu email;
-2. Confira se você respondeu o Mapeamento Comportamental que chegou no seu email;
-3. Acesse: [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
-4. Adicione o repositório com a sua solução;
-5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Foque em pontos obrigatórios e diferenciais quando for apresentar.
-6. Adicione o link da apresentação do seu projeto no README.md.
-7. Verifique se o Readme está bom e faça o commit final em seu repositório;
-8. Confira a vaga desejada;
-9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
+A página de listagem de locais foi implementada com base na listagem de empresas. Além das alterações de texto, formulário, nomes de variáveis e funções e lógica de comunicação com a API, foi implementado uma verificação para caso o usuário tente acessar a página de uma empresa que não possui acesso.
+Caso não houvesse essa verificação, apenas seria exibida uma mensagem de erro genérica. No entanto, essa implementação redireciona o usuário à listagem de empresas e informa que ele não possui acesso à empresa que tentou visualizar.
 
-## Suporte
-
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
-
-
+> This is a challenge by [Coodesh](https://coodesh.com/)
