@@ -3,5 +3,6 @@ export const defaultTheme = {
   green: "#00cc99",
   red: "#c90808",
 
-  backgroundWhite: '#f5f5f5'
+  backgroundWhite: "#f5f5f5",
+  darkBackground: "#EFEDED",
 } as const;

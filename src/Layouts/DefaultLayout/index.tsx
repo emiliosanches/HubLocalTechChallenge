@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
 import { StoreType } from "../../store";
+import { Header } from "./components/Header";
+
+import { DefaultLayoutContainer } from "./styles";
 
 export function DefaultLayout() {
   const { isLogged } = useSelector((state: StoreType) => state.auth);
@@ -15,9 +18,9 @@ export function DefaultLayout() {
   }, [isLogged]);
 
   return (
-    <div>
-      <h1>Default Layout</h1>
+    <DefaultLayoutContainer>
+      <Header />
       <Outlet />
-    </div>
+    </DefaultLayoutContainer>
   );
 }
