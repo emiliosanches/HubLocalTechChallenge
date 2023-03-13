@@ -5,12 +5,12 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 `;
 
-export const PageInfo = styled.div<{ darkBackground?: boolean }>`
+export const PageInfo = styled.div<{ variant?: "clickable" | "default" }>`
   padding: 1.5rem 2rem;
   font-weight: 700;
 
   ${(props) =>
-    props.darkBackground
+    props.variant === "clickable"
       ? css`
           background: ${props.theme.darkBackground};
         `
@@ -24,8 +24,17 @@ export const PageInfo = styled.div<{ darkBackground?: boolean }>`
   }
 
   span {
-    font-size: 1.875rem;
-    margin-left: 0.625rem;
+    ${(props) =>
+      props.variant === "clickable"
+        ? css`
+            font-size: 1.5rem;
+            margin-left: 0.75rem;
+            margin-right: 1rem;
+          `
+        : css`
+            font-size: 1.875rem;
+            margin-left: 0.625rem;
+          `}
   }
 `;
 

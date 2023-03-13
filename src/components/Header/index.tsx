@@ -10,10 +10,10 @@ import { HeaderContainer, PageInfo, UserInfo } from "./styles";
 
 interface HeaderProps {
   title: string;
-  darkTitleBackground?: boolean;
+  clickableTitle?: boolean; // not defined in layout, but visually seems to be a dropdown
 }
 
-export function Header({ title, darkTitleBackground }: HeaderProps) {
+export function Header({ title, clickableTitle }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -27,9 +27,10 @@ export function Header({ title, darkTitleBackground }: HeaderProps) {
 
   return (
     <HeaderContainer>
-      <PageInfo darkBackground={darkTitleBackground}>
+      <PageInfo variant={clickableTitle ? "clickable" : "default"}>
         <Business fontSize="inherit" />
         <span>{title}</span>
+        {!!clickableTitle && <ExpandMore />}
       </PageInfo>
 
       <UserInfo
