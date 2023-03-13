@@ -29,9 +29,11 @@ export const PageInfo = styled.div<{ darkBackground?: boolean }>`
   }
 `;
 
-export const UserInfo = styled.div`
+export const UserInfo = styled.button`
   padding: 0.75rem 2rem;
   background: ${(props) => props.theme.darkBackground};
+  outline: none;
+  border: none;
 
   display: flex;
   align-items: center;

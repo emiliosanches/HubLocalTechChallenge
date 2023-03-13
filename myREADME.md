@@ -71,4 +71,9 @@ Enquanto implementava o Header, percebi que havia um problema em utilizá-lo em 
 Para conseguir fazer isso, eu deveria salvar esse dado no meu estado global com Redux ou com um Contexto. No entanto, essa solução seria algo muito maior do que o problema que temos, portanto, optei por remover o DefaultLayout e chamar o componente Header diretamente nas páginas de listagem de empresas e locais.
 Assim, o nome da empresa pôde ser passado ao Header por meio de props.
 
+### 8. Componente PageGuard
+
+Como o DefaultLayout foi removido, as rotas de listagem de empresas e locais ficaram desprotegidas (já que era o DefaultLayout quem possuia a lógica para redirecionar à tela de login caso o usuário não estivesse autenticado).
+Portanto, criei o componente PageGuard, que não possui nenhum layout, retornando apenas o Outlet (restante da página), com essa verificação.
+
 > This is a challenge by [Coodesh](https://coodesh.com/)
