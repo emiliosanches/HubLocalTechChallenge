@@ -12,7 +12,7 @@ import { api } from "../../../../services/api";
 import { StyledDialog, DeleteButton } from "./styles";
 import { toast } from "react-toastify";
 
-interface CompanyModalProps {
+interface DeleteCompanyModalProps {
   open: boolean;
   onClose: (mustReload?: boolean) => void;
   companyId?: number;
@@ -24,7 +24,7 @@ export function DeleteCompanyModal({
   onClose,
   companyId,
   companyName,
-}: CompanyModalProps) {
+}: DeleteCompanyModalProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   function handleDeleteCompany() {

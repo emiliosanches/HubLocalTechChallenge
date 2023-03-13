@@ -22,7 +22,7 @@ import { CompanyForm, StyledDialog, SubmitButton } from "./styles";
 interface CompanyModalProps {
   open: boolean;
   onClose: (mustReload?: boolean) => void;
-  /** Provide company data if updating */
+  /** Provide if updating */
   companyId?: number;
 }
 
@@ -98,7 +98,11 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
   }
 
   useEffect(() => {
-    reset();
+    if (!open) {
+      reset();
+      setOriginalCompanyName("");
+      setIsLoadingData(false);
+    }
   }, [open]);
 
   useEffect(() => {
