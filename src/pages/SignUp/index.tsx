@@ -5,17 +5,13 @@ import { useNavigate } from "react-router-dom";
 import z from "zod";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Input } from "../../components/Input";
+import HubLocalLogo from "../../assets/HubLocalLogo.png";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
-import HubLocalLogo from "../../assets/HubLocalLogo.png";
 import { toastFormErrors } from "../../utils/form/toastFormErrors";
 
-import {
-  InputContainer,
-  SignUpButton,
-  SignUpForm,
-  NavigateToLoginButton,
-} from "./styles";
+import { SignUpButton, SignUpForm, NavigateToLoginButton } from "./styles";
 
 const signUpFormSchema = z
   .object({
@@ -112,22 +108,14 @@ export function SignUpPage() {
     <SignUpForm onSubmit={handleSubmit(handleSignUp, handleSubmitError)}>
       <img src={HubLocalLogo} />
 
-      <InputContainer>
-        <label>Nome</label>
-        <input {...register("name")} />
-      </InputContainer>
-      <InputContainer>
-        <label>Email</label>
-        <input {...register("email")} type="email" />
-      </InputContainer>
-      <InputContainer>
-        <label>Senha</label>
-        <input {...register("password")} type="password" />
-      </InputContainer>
-      <InputContainer>
-        <label>Repetir senha</label>
-        <input {...register("passwordConfirmation")} type="password" />
-      </InputContainer>
+      <Input {...register("name")} labelText="Nome" />
+      <Input {...register("email")} labelText="Email" />
+      <Input {...register("password")} labelText="Senha" type="password" />
+      <Input
+        {...register("passwordConfirmation")}
+        labelText="Repetir senha"
+        type="password"
+      />
       <SignUpButton disabled={isSubmitting}>
         {!isSubmitting ? (
           "REGISTRAR"

@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ClipLoader } from "react-spinners";
 import z from "zod";
+import { Input } from "../../components/Input";
+import HubLocalLogo from "../../assets/HubLocalLogo.png";
 import { login } from "../../store/modules/auth/actions";
 import { api } from "../../services/api";
-import HubLocalLogo from "../../assets/HubLocalLogo.png";
 import { toastFormErrors } from "../../utils/form/toastFormErrors";
 
-import { InputContainer, LoginButton, LoginForm, SignUpButton } from "./styles";
+import { LoginButton, LoginForm, SignUpButton } from "./styles";
 
 const loginFormSchema = z.object({
   email: z.string().min(1, "Informe o e-mail"),
@@ -72,14 +73,9 @@ export function LoginPage() {
     <LoginForm onSubmit={handleSubmit(handleLogin, handleSubmitError)}>
       <img src={HubLocalLogo} />
 
-      <InputContainer>
-        <label>Email</label>
-        <input {...register("email")} />
-      </InputContainer>
-      <InputContainer>
-        <label>Senha</label>
-        <input {...register("password")} type="password" />
-      </InputContainer>
+      <Input labelText="Email" {...register("email")} />
+      <Input labelText="Senha" {...register("password")} type="password" />
+
       <LoginButton disabled={isSubmitting}>
         {!isSubmitting ? "LOGAR" : <ClipLoader size="1.25rem" color="white" />}
       </LoginButton>
