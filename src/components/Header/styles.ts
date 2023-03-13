@@ -7,7 +7,6 @@ export const HeaderContainer = styled.header`
 
 export const PageInfo = styled.div<{ darkBackground?: boolean }>`
   padding: 1.5rem 2rem;
-  font-size: 2rem;
   font-weight: 700;
 
   ${(props) =>
@@ -20,7 +19,12 @@ export const PageInfo = styled.div<{ darkBackground?: boolean }>`
   display: flex;
   align-items: center;
 
+  svg {
+    font-size: 2rem;
+  }
+
   span {
+    font-size: 1.875rem;
     margin-left: 0.625rem;
   }
 `;

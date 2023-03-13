@@ -1,3 +1,10 @@
+import { Header } from "../../components/Header";
+
 export function CompaniesListPage() {
-  return <h1>Companies list</h1>;
+  return (
+    <>
+      <Header title="Minhas Empresas" />
+      <h1>Companies list</h1>
+    </>
+  );
 }
