@@ -102,6 +102,7 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
     if (!open) {
       reset();
       setOriginalCompanyName("");
+      setValue('cnpj', '')
       setIsLoadingData(false);
     }
   }, [open]);
