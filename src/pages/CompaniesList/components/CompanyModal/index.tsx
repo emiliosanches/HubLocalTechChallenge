@@ -9,7 +9,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
-import InputMask from "react-input-mask";
+import InputMask from "react-maskedinput";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import { cnpj } from "cpf-cnpj-validator";
@@ -102,7 +102,7 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
     if (!open) {
       reset();
       setOriginalCompanyName("");
-      setValue('cnpj', '')
+      setValue("cnpj", "");
       setIsLoadingData(false);
     }
   }, [open]);
@@ -164,7 +164,7 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
                   labelText="CNPJ"
                   inputComponent={(props) => (
                     <InputMask
-                      mask="99.999.999/9999-99"
+                      mask="11.111.111/1111-11"
                       {...props}
                       {...field}
                     />
