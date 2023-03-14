@@ -2,6 +2,9 @@
 
 Esse repositório contem o frontend de um teste técnico para a vaga de FullStack Javascript Developer na HubLocal. Trata-se de uma interface em React com autenticação, formulários de cadastro e telas de listagem.
 
+## Acessar aplicação hospedada
+A aplicação está hospedada na Vercel e pode ser acessada no link: [https://hub-local-tech-challenge-frontend.vercel.app/](https://hub-local-tech-challenge-frontend.vercel.app/)
+
 ## Tecnologias utilizadas
 
 - React
