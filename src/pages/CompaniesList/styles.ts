@@ -8,7 +8,6 @@ export const CompaniesListPageContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 `;
 
 export const NoCompaniesMessage = styled.h1`
