@@ -144,7 +144,12 @@ export function PlacesListPage() {
               <br />
               cadastrado!
             </NoPlacesMessage>
-            <NewPlaceButton size="big">Adicionar Local</NewPlaceButton>
+            <NewPlaceButton
+              size="big"
+              onClick={() => setIsPlaceModalOpen(true)}
+            >
+              Adicionar Local
+            </NewPlaceButton>
           </>
         )}
       </PlacesListPageContainer>

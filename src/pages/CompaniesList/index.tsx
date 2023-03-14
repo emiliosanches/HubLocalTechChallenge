@@ -131,7 +131,12 @@ export function CompaniesListPage() {
               <br />
               cadastrada!
             </NoCompaniesMessage>
-            <NewCompanyButton size="big">Adicionar Empresa</NewCompanyButton>
+            <NewCompanyButton
+              size="big"
+              onClick={() => setIsCompanyModalOpen(true)}
+            >
+              Adicionar Empresa
+            </NewCompanyButton>
           </>
         )}
       </CompaniesListPageContainer>
