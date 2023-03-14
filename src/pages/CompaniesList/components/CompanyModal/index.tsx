@@ -7,7 +7,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import InputMask from "react-input-mask";
 import { ClipLoader } from "react-spinners";
@@ -44,6 +44,7 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
     formState: { errors, isSubmitting },
     setValue,
     reset,
+    control,
   } = useForm<CompanyFormData>({
     resolver: zodResolver(companyFormSchema),
   });
@@ -153,13 +154,20 @@ export function CompanyModal({ open, onClose, companyId }: CompanyModalProps) {
 
             <Input labelText="Website" {...register("website")} />
 
-            <Input
-              labelText="CNPJ"
-              inputComponent={(props) => (
-                <InputMask
-                  mask="99.999.999/9999-99"
-                  {...props}
-                  {...register("cnpj")}
+            <Controller
+              name="cnpj"
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Input
+                  labelText="CNPJ"
+                  inputComponent={(props) => (
+                    <InputMask
+                      mask="99.999.999/9999-99"
+                      {...props}
+                      {...field}
+                    />
+                  )}
                 />
               )}
             />
