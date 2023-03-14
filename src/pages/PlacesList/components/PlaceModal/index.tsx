@@ -130,7 +130,7 @@ export function PlaceModal({
   return (
     <StyledDialog onClose={() => onClose()} open={open}>
       <DialogTitle>
-        {placeId ? `Editar: ${originalPlaceName}` : "Adicionar empresa"}
+        {placeId ? `Editar: ${originalPlaceName}` : "Adicionar local"}
         <IconButton aria-label="close" onClick={() => onClose()}>
           <Close />
         </IconButton>
